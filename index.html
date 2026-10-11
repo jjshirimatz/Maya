@@ -1,0 +1,233 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADYPLUS - MAYA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B1120;
+            color: white;
+            /* Extra padding to prevent bottom nav from hiding content */
+            padding-bottom: 5.5rem; 
+        }
+        /* Custom image placeholder gradient */
+        .poster-bg {
+            background: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center top;
+        }
+        /* Gradient overlay for text readability */
+        .poster-overlay {
+            background: linear-gradient(to bottom, rgba(11, 17, 32, 0) 0%, rgba(11, 17, 32, 0.6) 50%, rgba(11, 17, 32, 1) 100%);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative">
+
+    <!-- Header Section -->
+    <header class="flex justify-between items-center p-4 absolute top-0 w-full z-20">
+        <div class="flex items-center gap-2">
+            <!-- Play Icon / Logo -->
+            <div class="bg-red-600 rounded-lg p-1.5 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold leading-tight tracking-tight">DADYPLUS</h1>
+                <p class="text-[10px] text-gray-300 tracking-wider font-semibold">MOVIES & SERIES</p>
+            </div>
+        </div>
+        <!-- Profile Icon -->
+        <div class="w-10 h-10 bg-gray-800/60 rounded-full flex items-center justify-center border border-gray-600 backdrop-blur-sm shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- Main Poster Area -->
+    <main class="relative h-[45vh] w-full">
+        <!-- Background Image -->
+        <div class="absolute inset-0 poster-bg"></div>
+        <!-- Dark Gradient Overlay for perfect text contrast -->
+        <div class="absolute inset-0 poster-overlay"></div>
+        
+        <!-- Content Overlay Container -->
+        <div class="absolute bottom-0 left-0 w-full p-5 z-10 flex flex-col justify-end">
+            <!-- Badge -->
+            <div class="mb-3">
+                <span class="bg-red-600 text-white text-[11px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-wider inline-block shadow-lg">
+                    SERIES MPYA
+                </span>
+            </div>
+            
+            <!-- Flex Container for Title/Meta and Trailer Button -->
+            <div class="flex justify-between items-end gap-3 mb-3">
+                <!-- Left Column: Title & Meta -->
+                <div class="flex-1">
+                    <!-- Title -->
+                    <h2 class="text-6xl font-extrabold text-[#FCD34D] tracking-tighter leading-none mb-3 drop-shadow-2xl" style="text-shadow: 2px 3px 5px rgba(0,0,0,0.9);">
+                        MAYA
+                    </h2>
+                    
+                    <!-- Metadata (Episodes | Category | Age) -->
+                    <div class="flex flex-wrap items-center gap-2 text-sm text-gray-300 font-semibold drop-shadow-md">
+                        <span>8 Episodes</span>
+                        <span class="text-gray-500">|</span>
+                        <span>Crime Thriller</span>
+                        <span class="text-gray-500">|</span>
+                        <span>16+</span>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Trailer Button -->
+                <div class="flex flex-col items-center shrink-0 mb-1">
+                    <button class="w-14 h-14 bg-blue-500/20 backdrop-blur-md border border-blue-400/50 rounded-full flex items-center justify-center mb-1.5 hover:bg-blue-500/40 transition shadow-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
+                    <span class="text-[11px] font-semibold text-center leading-tight drop-shadow-md text-gray-100">Tazama<br>Trailer</span>
+                </div>
+            </div>
+            
+            <!-- Description -->
+            <p class="text-[13px] text-gray-300 leading-snug font-medium drop-shadow-lg w-[85%] mt-1">
+                Hadithi ya mapenzi, usaliti na kisasi. Angalia jinsi maisha yanavyobadilika baada ya ukweli kufichuka...
+            </p>
+        </div>
+    </main>
+
+    <!-- Info Cards -->
+    <div class="px-5 mt-5 grid grid-cols-3 gap-3">
+        <div class="bg-[#152033] rounded-xl p-3 flex flex-col items-center justify-center border border-gray-800 text-center gap-2 shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+            </svg>
+            <span class="text-[10px] font-semibold text-gray-400">Ubora wa HD</span>
+        </div>
+        
+        <div class="bg-[#152033] rounded-xl p-3 flex flex-col items-center justify-center border border-gray-800 text-center gap-2 shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span class="text-[10px] font-semibold text-gray-400">8 Episodes</span>
+        </div>
+        
+        <div class="bg-[#152033] rounded-xl p-3 flex flex-col items-center justify-center border border-gray-800 text-center gap-2 shadow-md">
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="text-[10px] font-semibold text-gray-400 leading-tight">Download<br>Baada ya Malipo</span>
+        </div>
+    </div>
+
+    <!-- Payment Card Section -->
+    <div class="px-5 mt-6 mb-8">
+        <div class="bg-gradient-to-b from-[#111A2C] to-[#0D1524] rounded-2xl p-5 border border-blue-900/40 shadow-xl">
+            
+            <!-- Payment Header -->
+            <div class="flex justify-between items-start mb-5">
+                <div class="flex gap-3 items-start">
+                    <!-- Icon -->
+                    <div class="mt-1 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 transform -rotate-45" fill="currentColor" viewBox="0 0 24 24">
+                             <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+                        </svg>
+                    </div>
+                    <!-- Text Content -->
+                    <div class="pr-2">
+                        <h4 class="text-lg font-bold text-white leading-tight">MAYA Series</h4>
+                        <p class="text-[12px] text-gray-400 mt-1.5 leading-snug">Lipia Tsh 2,000 kutazama episode zote za Series ya MAYA. Bonyeza LIPA TSH 2,000 kufanya malipo</p>
+                    </div>
+                </div>
+                <!-- Price Tag -->
+                <div class="bg-red-600 px-3 py-1.5 rounded-lg text-white font-bold whitespace-nowrap shrink-0 mt-0.5 shadow-md">
+                    TSH 2,000
+                </div>
+            </div>
+            
+            <!-- Action Button -->
+            <button class="w-full bg-[#10B981] hover:bg-green-500 text-white font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-2 mb-5 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                <span class="tracking-wide">LIPA TSH 2,000</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            
+            <!-- Payment Providers -->
+            <div class="grid grid-cols-4 gap-2 border-t border-gray-800/80 pt-5">
+                <!-- Maxx -->
+                <div class="flex flex-col items-center justify-center gap-1.5">
+                    <div class="w-11 h-11 bg-[#FFD700] rounded-xl flex items-center justify-center font-bold text-black text-[11px] shadow-inner">
+                        MX
+                    </div>
+                    <span class="text-[9px] text-gray-500 font-medium">Maxx by Yas</span>
+                </div>
+                <!-- M-Pesa -->
+                <div class="flex flex-col items-center justify-center gap-1.5">
+                    <div class="w-11 h-11 bg-[#E3000F] rounded-xl flex items-center justify-center shadow-inner">
+                        <div class="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    <span class="text-[9px] text-gray-500 font-medium text-center leading-tight">M-Pesa<br>(Vodacom)</span>
+                </div>
+                <!-- Tigo Pesa -->
+                <div class="flex flex-col items-center justify-center gap-1.5">
+                    <div class="w-11 h-11 bg-[#0047AB] rounded-xl flex items-center justify-center text-white font-bold text-[10px] leading-tight italic shadow-inner">
+                        tigo<br>pesa
+                    </div>
+                    <span class="text-[9px] text-gray-500 font-medium">Tigo Pesa</span>
+                </div>
+                <!-- Airtel Money -->
+                <div class="flex flex-col items-center justify-center gap-1.5">
+                    <div class="w-11 h-11 bg-[#FF0000] rounded-xl flex items-center justify-center text-white shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                        </svg>
+                    </div>
+                    <span class="text-[9px] text-gray-500 font-medium text-center leading-tight">Airtel Money</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 w-full bg-[#0B1120]/95 backdrop-blur-md border-t border-gray-800 flex justify-around items-center pt-2 pb-safe z-50">
+        <a href="#" class="flex flex-col items-center gap-1 p-2 text-[#3B82F6]">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+            <span class="text-[10px] font-semibold">Home</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-gray-300 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-[10px] font-medium">Series</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-1 p-2 text-gray-500 hover:text-gray-300 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+    </nav>
+    
+    <!-- Utilities -->
+    <style>
+        .pb-safe { padding-bottom: max(env(safe-area-inset-bottom, 0.5rem), 0.5rem); }
+    </style>
+</body>
+</html>
