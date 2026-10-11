@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADYPLUS - MAYA</title>
-    <!-- Preload critical images for instant loading in Android WebView -->
     <link rel="preload" href="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" as="image">
-    <link rel="preload" href="https://raw.githubusercontent.com/jjshirimatz/Maya/main/tigopesa.png" as="image">
-    <link rel="preload" href="https://raw.githubusercontent.com/jjshirimatz/Maya/main/mpesa.png" as="image">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -107,38 +104,41 @@
         </div>
     </div>
 
-    <!-- Payment Card Section -->
+    <!-- Payment / Access Card Section -->
     <div class="px-4 mt-4 mb-6">
-        <div class="bg-gradient-to-b from-[#111A2C] to-[#0D1524] rounded-2xl p-4 border border-blue-900/40 shadow-xl">
+        <div id="paymentCardContainer" class="bg-gradient-to-b from-[#111A2C] to-[#0D1524] rounded-2xl p-4 border border-blue-900/40 shadow-xl">
             
-            <div class="flex justify-between items-start mb-4">
-                <div class="flex gap-3 items-start">
-                    <div class="mt-1 shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 transform -rotate-45" fill="currentColor" viewBox="0 0 24 24">
-                             <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
-                        </svg>
+            <!-- Hapa itaonyesha hali ya kulipia au tayari umelipia -->
+            <div id="cardContent">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex gap-3 items-start">
+                        <div class="mt-1 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 transform -rotate-45" fill="currentColor" viewBox="0 0 24 24">
+                                 <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
+                            </svg>
+                        </div>
+                        <div class="pr-2">
+                            <h4 class="text-base font-bold text-white leading-tight">MAYA Series</h4>
+                            <p class="text-[11px] text-gray-400 mt-1 leading-snug">Lipia Tsh 2,000 kutazama episode zote za Series ya MAYA. Bonyeza LIPA TSH 2,000 kufanya malipo</p>
+                        </div>
                     </div>
-                    <div class="pr-2">
-                        <h4 class="text-base font-bold text-white leading-tight">MAYA Series</h4>
-                        <p class="text-[11px] text-gray-400 mt-1 leading-snug">Lipia Tsh 2,000 kutazama episode zote za Series ya MAYA. Bonyeza LIPA TSH 2,000 kufanya malipo</p>
+                    <div class="bg-red-600 px-2.5 py-1 rounded-lg text-white font-bold text-xs whitespace-nowrap shrink-0 mt-0.5 shadow-md">
+                        TSH 2,000
                     </div>
                 </div>
-                <div class="bg-red-600 px-2.5 py-1 rounded-lg text-white font-bold text-xs whitespace-nowrap shrink-0 mt-0.5 shadow-md">
-                    TSH 2,000
-                </div>
+                
+                <!-- Kitufe cha Malipo kinachompeleka Snippe na kuweka alama ya VIP -->
+                <a href="https://snippe.me/pay/maya-series" onclick="markAsPaid()" class="w-full bg-[#10B981] hover:bg-green-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 mb-4 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                    </svg>
+                    <span class="tracking-wide text-sm">LIPA TSH 2,000</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
             </div>
-            
-            <!-- Action Button Linked to Snippe -->
-            <a href="https://snippe.me/pay/maya-series" class="w-full bg-[#10B981] hover:bg-green-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 mb-4 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-                <span class="tracking-wide text-sm">LIPA TSH 2,000</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
-            
+
             <!-- Payment Providers -->
             <div class="grid grid-cols-4 gap-2 border-t border-gray-800/80 pt-4">
                 <div class="flex flex-col items-center justify-center gap-1">
@@ -170,7 +170,7 @@
         </div>
     </div>
 
-    <!-- Support & Security Footer Section -->
+    <!-- Footer Section -->
     <footer class="px-4 mb-6">
         <div class="bg-[#111A2C]/60 border border-gray-800 rounded-2xl p-4 flex flex-col items-center text-center gap-3">
             <a href="https://wa.me/" target="_blank" class="w-full bg-[#25D366]/20 border border-[#25D366]/40 hover:bg-[#25D366]/30 text-green-400 font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs">
@@ -187,5 +187,38 @@
         </div>
     </footer>
 
+    <!-- JavaScript ya Kuangalia Kama Ameshakulipia -->
+    <script>
+        function markAsPaid() {
+            // Iweke kumbukumbu kwenye simu ya mteja kuwa ameshalipia
+            localStorage.setItem('maya_vip_paid', 'true');
+        }
+
+        window.onload = function() {
+            // Angalia kama mteja alishalipia siku za nyuma
+            if (localStorage.getItem('maya_vip_paid') === 'true') {
+                const contentDiv = document.getElementById('cardContent');
+                contentDiv.innerHTML = `
+                    <div class="text-center py-2">
+                        <div class="bg-[#0A3D22] border border-[#0F763F] rounded-xl p-3 flex items-center justify-center gap-3 mb-4">
+                            <div class="bg-[#10B981] rounded-full p-1">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-xs text-white font-bold leading-none mb-1">Tayari umelipia Series hii</p>
+                                <p class="text-[10px] text-[#4ADE80] leading-none">Una ruhusa ya kutazama kila kitu</p>
+                            </div>
+                        </div>
+                        <a href="maya-vip-access-tazama.html" class="w-full bg-[#136CFB] hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow-lg">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span class="text-sm">Fungua Movies & Episodes</span>
+                        </a>
+                    </div>
+                `;
+            }
+        }
+    </script>
 </body>
 </html>
