@@ -1,0 +1,419 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DADYPLUS - MAYA VIP Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050810;
+            color: white;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .title-font {
+            font-family: 'Arial Black', Impact, sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen">
+
+    <!-- Sticky Top Section (Header + Search Results + Video Container vinabaki pale pale juu) -->
+    <div class="sticky top-0 z-50 bg-[#050810] shadow-xl">
+        <!-- Header Section -->
+        <header class="flex items-center justify-between p-4 w-full bg-[#050810] border-b border-gray-900">
+            <div class="flex items-center gap-4">
+                <!-- Back Arrow -->
+                <a href="index.html" class="cursor-pointer">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                </a>
+                
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="bg-red-600 rounded-lg p-1 w-8 h-8 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <div class="-space-y-1">
+                        <h1 class="text-xl font-bold tracking-tight text-white">DADY<span class="text-[#3B82F6]">PLUS</span></h1>
+                        <p class="text-[8px] text-gray-300 font-semibold tracking-[0.2em]">MOVIES & SERIES</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center">
+                <!-- Search Icon Toggle -->
+                <button onclick="toggleSearch()" class="cursor-pointer p-1">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Search Bar na Kitufe cha X (Close) -->
+        <div id="searchBarContainer" class="hidden px-4 py-2.5 bg-[#0B1320] border-b border-gray-800">
+            <form onsubmit="handleSearchSubmit(event)" class="relative flex items-center">
+                <input type="text" id="searchInput" oninput="filterEpisodes()" placeholder="Tafuta episode (mfano: Episode 8)..." class="w-full bg-[#151D2D] border border-gray-700 rounded-xl pl-4 pr-10 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                <button type="button" onclick="closeSearch()" class="absolute right-3 text-gray-400 hover:text-white p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </form>
+            
+            <!-- Hapa ndipo matokeo ya search yanatokea hapo hapo juu chini ya kibox -->
+            <div id="searchResultsDropdown" class="hidden mt-2 flex flex-col gap-2 max-h-56 overflow-y-auto"></div>
+        </div>
+
+        <!-- Cover Image Area with Play Button Overlay -->
+        <div id="coverContainer" class="relative w-full aspect-[16/10] bg-black cursor-pointer group" onclick="playFullMovie()">
+            <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" fetchpriority="high" class="w-full h-full object-cover">
+            
+            <!-- Dark Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050810] via-black/30 to-black/40"></div>
+
+            <!-- Center Play Button -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center shadow-2xl transition group-hover:scale-110">
+                    <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Player with Clear Episode Title Bar -->
+        <div id="videoWrapper" class="hidden relative w-full aspect-[16/10] bg-black">
+            <div id="playerTitleBanner" class="w-full p-2 bg-black text-xs font-bold text-[#FACC15] tracking-wide border-b border-gray-800">
+                MAYA - Full Episode
+            </div>
+            <video id="mainPlayer" class="w-full h-[calc(100%-32px)] object-cover" controls controlsList="nodownload">
+                <source src="LINK_YAKO_YA_VIDEO_HAPA.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Scrollable Content Section -->
+    <div class="overflow-y-auto">
+        <!-- Title & Metadata Section -->
+        <div class="px-4 mt-4">
+            <div class="flex justify-between items-start gap-2">
+                <!-- Left Side: Title & Info -->
+                <div class="flex-1">
+                    <h2 class="text-[28px] font-extrabold text-[#FACC15] tracking-wide leading-none title-font" style="text-shadow: 1px 1px 0px rgba(0,0,0,1);">
+                        MAYA <span class="text-white text-[18px] font-bold font-sans tracking-normal">- Full Episode</span>
+                    </h2>
+                    
+                    <div class="flex items-center gap-2 text-[12px] text-gray-300 font-medium mt-2">
+                        <span>8 Episodes</span>
+                        <span class="text-gray-500">|</span>
+                        <span>Crime Thriller</span>
+                        <span class="text-gray-500">|</span>
+                        <span>16+</span>
+                        <span class="text-gray-500">|</span>
+                        <span class="border border-gray-400 px-1 rounded text-[10px] font-bold text-gray-200">HD</span>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Green Access Badge -->
+                <div class="flex-shrink-0 mt-1">
+                    <div class="bg-[#0A3D22] border border-[#0F763F] rounded-xl px-2.5 py-1.5 flex items-center gap-2 shadow-lg">
+                        <div class="bg-[#10B981] rounded-full p-0.5">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-[11px] text-white font-bold leading-none mb-0.5">Tazama Episode zote</p>
+                            <p class="text-[9px] text-[#4ADE80] leading-none">Asante kwa kulipia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button with Thumbnail -->
+        <div class="px-4 mt-4">
+            <button onclick="playFullMovie()" class="w-full bg-[#136CFB] hover:bg-blue-600 rounded-xl flex items-center p-2.5 gap-3 transition shadow-lg">
+                <div class="w-12 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" class="w-full h-full object-cover">
+                </div>
+                <div class="text-left flex-1">
+                    <p class="text-[14px] font-bold text-white leading-tight">Bonyeza Hapa Kutazama Yote</p>
+                    <p class="text-[11px] text-blue-100 leading-tight mt-0.5">Mwanzo mpaka mwisho</p>
+                </div>
+                <div class="pr-2">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+            </button>
+        </div>
+
+        <!-- Non-clickable Gray Section for Chagua Episode -->
+        <div class="px-4 mt-5">
+            <div class="w-full bg-[#151D2D] border border-gray-800 rounded-xl py-3 px-4 flex items-center gap-2.5">
+                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <span class="text-[13px] font-bold text-gray-200">Chagua Episode</span>
+            </div>
+        </div>
+
+        <!-- Episodes List -->
+        <div id="episodesList" class="px-4 mt-4 pb-12 flex flex-col gap-2.5">
+            
+            <!-- Episode 1 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_1.mp4', 'MAYA - Episode 1')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 1" data-desc="Mwanzo wa hadithi, maisha yanabadilika..." data-url="LINK_YA_VIDEO_1.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 1</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 1</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Mwanzo wa hadithi, maisha yanabadilika...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 2 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_2.mp4', 'MAYA - Episode 2')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 2" data-desc="Ukweli waanza kufichuka..." data-url="LINK_YA_VIDEO_2.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 2</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 2</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Ukweli waanza kufichuka...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 3 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_3.mp4', 'MAYA - Episode 3')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 3" data-desc="Mipango mpya ya kisasi..." data-url="LINK_YA_VIDEO_3.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 3</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 3</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Mipango mpya ya kisasi...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 4 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_4.mp4', 'MAYA - Episode 4')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 4" data-desc="Mapenzi au kisasi?..." data-url="LINK_YA_VIDEO_4.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 4</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 4</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Mapenzi au kisasi?...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 5 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_5.mp4', 'MAYA - Episode 5')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 5" data-desc="Mvutano unaongezeka..." data-url="LINK_YA_VIDEO_5.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 5</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 5</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Mvutano unaongezeka...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 6 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_6.mp4', 'MAYA - Episode 6')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 6" data-desc="Maamuzi magumu..." data-url="LINK_YA_VIDEO_6.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 6</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 6</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Maamuzi magumu...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 7 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_7.mp4', 'MAYA - Episode 7')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 7" data-desc="Mwisho wa mipango..." data-url="LINK_YA_VIDEO_7.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 7</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 7</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Mwisho wa mipango...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Episode 8 -->
+            <div onclick="playEpisode('LINK_YA_VIDEO_8.mp4', 'MAYA - Episode 8')" class="episode-item bg-[#0F1626] p-2.5 rounded-2xl flex items-center gap-3.5 cursor-pointer border border-transparent hover:border-gray-700 transition group" data-title="Episode 8" data-desc="Ukweli wote wadokelewa..." data-url="LINK_YA_VIDEO_8.mp4">
+                <div class="relative w-32 h-[72px] rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gray-900">
+                    <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" loading="eager" class="w-full h-full object-cover">
+                    <div class="absolute bottom-1 left-1 bg-black/80 px-1.5 py-0.5 rounded text-[10px] font-bold text-white uppercase">EP 8</div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-[14px] text-white leading-tight">Episode 8</h4>
+                    <p class="text-[12px] text-[#9CA3AF] line-clamp-1 leading-tight mt-1">Ukweli wote wadokelewa...</p>
+                </div>
+                <div class="flex-shrink-0 pr-1">
+                    <div class="w-8 h-8 rounded-full border-[1.5px] border-gray-400 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:border-white transition">
+                        <svg class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleSearch() {
+            const bar = document.getElementById('searchBarContainer');
+            const input = document.getElementById('searchInput');
+            if (bar.classList.contains('hidden')) {
+                bar.classList.remove('hidden');
+                input.focus();
+            } else {
+                closeSearch();
+            }
+        }
+
+        function closeSearch() {
+            const bar = document.getElementById('searchBarContainer');
+            const input = document.getElementById('searchInput');
+            const dropdown = document.getElementById('searchResultsDropdown');
+            bar.classList.add('hidden');
+            dropdown.classList.add('hidden');
+            dropdown.innerHTML = '';
+            input.value = '';
+            filterEpisodes();
+        }
+
+        function handleSearchSubmit(event) {
+            event.preventDefault();
+            document.getElementById('searchInput').blur();
+        }
+
+        function filterEpisodes() {
+            let query = document.getElementById('searchInput').value.toLowerCase().trim();
+            let dropdown = document.getElementById('searchResultsDropdown');
+            let items = document.getElementsByClassName('episode-item');
+            
+            // 1. Chuja kwenye orodha kuu ya chini
+            for (let i = 0; i < items.length; i++) {
+                let title = items[i].getAttribute('data-title').toLowerCase();
+                if (title.includes(query)) {
+                    items[i].style.display = "flex";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+
+            // 2. Toa kadi za matokeo papo hapo juu chini ya kibox cha search kama kuna neno limeandikwa
+            dropdown.innerHTML = '';
+            if (query === "") {
+                dropdown.classList.add('hidden');
+                return;
+            }
+
+            let matchFound = false;
+            for (let i = 0; i < items.length; i++) {
+                let title = items[i].getAttribute('data-title');
+                let desc = items[i].getAttribute('data-desc');
+                let url = items[i].getAttribute('data-url');
+                
+                if (title.toLowerCase().includes(query)) {
+                    matchFound = true;
+                    let card = document.createElement('div');
+                    card.className = "bg-[#151D2D] hover:bg-[#1E293B] p-2 rounded-xl flex items-center gap-3 cursor-pointer border border-gray-700 transition";
+                    card.innerHTML = `
+                        <div class="relative w-24 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-gray-900">
+                            <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" class="w-full h-full object-cover">
+                            <div class="absolute bottom-1 left-1 bg-black/80 px-1 py-0.5 rounded text-[9px] font-bold text-white uppercase">${title}</div>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold text-xs text-white leading-tight">${title}</h4>
+                            <p class="text-[10px] text-gray-400 line-clamp-1 mt-0.5">${desc}</p>
+                        </div>
+                    `;
+                    card.onclick = function() {
+                        playEpisode(url, 'MAYA - ' + title);
+                        closeSearch();
+                    };
+                    dropdown.appendChild(card);
+                }
+            }
+
+            if (matchFound) {
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        }
+
+        function playFullMovie() {
+            const cover = document.getElementById('coverContainer');
+            const wrapper = document.getElementById('videoWrapper');
+            const player = document.getElementById('mainPlayer');
+            const banner = document.getElementById('playerTitleBanner');
+
+            banner.innerText = "MAYA - Full Episode";
+            cover.style.display = 'none';
+            wrapper.style.display = 'block';
+            player.play();
+        }
+
+        function playEpisode(videoUrl, episodeName) {
+            const cover = document.getElementById('coverContainer');
+            const wrapper = document.getElementById('videoWrapper');
+            const player = document.getElementById('mainPlayer');
+            const banner = document.getElementById('playerTitleBanner');
+
+            banner.innerText = episodeName;
+            cover.style.display = 'none';
+            wrapper.style.display = 'block';
+            player.src = videoUrl;
+            player.play();
+        }
+    </script>
+</body>
+</html>
