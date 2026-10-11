@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DADYPLUS - MAYA</title>
+    <!-- Preload muhimu kwa ajili ya kasi ya WebView -->
     <link rel="preload" href="https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png" as="image">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -15,7 +16,8 @@
             padding-bottom: 3rem; 
         }
         .poster-bg {
-            background: url('https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png');
+            background-color: #0B1120;
+            background-image: url('https://raw.githubusercontent.com/jjshirimatz/Maya/main/file_0000000038d882118cc91d85870ab9be.png');
             background-size: cover;
             background-position: center top;
         }
@@ -106,9 +108,8 @@
 
     <!-- Payment / Access Card Section -->
     <div class="px-4 mt-4 mb-6">
-        <div id="paymentCardContainer" class="bg-gradient-to-b from-[#111A2C] to-[#0D1524] rounded-2xl p-4 border border-blue-900/40 shadow-xl">
+        <div class="bg-gradient-to-b from-[#111A2C] to-[#0D1524] rounded-2xl p-4 border border-blue-900/40 shadow-xl">
             
-            <!-- Hapa itaonyesha hali ya kulipia au tayari umelipia -->
             <div id="cardContent">
                 <div class="flex justify-between items-start mb-4">
                     <div class="flex gap-3 items-start">
@@ -127,7 +128,6 @@
                     </div>
                 </div>
                 
-                <!-- Kitufe cha Malipo kinachompeleka Snippe na kuweka alama ya VIP -->
                 <a href="https://snippe.me/pay/maya-series" onclick="markAsPaid()" class="w-full bg-[#10B981] hover:bg-green-500 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 mb-4 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -139,32 +139,12 @@
                 </a>
             </div>
 
-            <!-- Payment Providers -->
-            <div class="grid grid-cols-4 gap-2 border-t border-gray-800/80 pt-4">
-                <div class="flex flex-col items-center justify-center gap-1">
-                    <div class="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-inner bg-white/5">
-                        <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/tigopesa.png" loading="eager" alt="Tigo Pesa" class="w-full h-full object-cover">
-                    </div>
-                    <span class="text-[9px] text-gray-400 font-medium">Tigo Pesa</span>
-                </div>
-                <div class="flex flex-col items-center justify-center gap-1">
-                    <div class="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-inner bg-white/5">
-                        <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/mpesa.png" loading="eager" alt="M-Pesa" class="w-full h-full object-cover">
-                    </div>
-                    <span class="text-[9px] text-gray-400 font-medium text-center leading-tight">M-Pesa</span>
-                </div>
-                <div class="flex flex-col items-center justify-center gap-1">
-                    <div class="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-inner bg-white/5">
-                        <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/halopesa.png" loading="eager" alt="HaloPesa" class="w-full h-full object-cover">
-                    </div>
-                    <span class="text-[9px] text-gray-400 font-medium">HaloPesa</span>
-                </div>
-                <div class="flex flex-col items-center justify-center gap-1">
-                    <div class="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-inner bg-white/5">
-                        <img src="https://raw.githubusercontent.com/jjshirimatz/Maya/main/airtelmoney.png" loading="eager" alt="Airtel Money" class="w-full h-full object-cover">
-                    </div>
-                    <span class="text-[9px] text-gray-400 font-medium text-center leading-tight">Airtel Money</span>
-                </div>
+            <!-- Payment Providers (Zimeondolewa picha nzito ili zisicheleweshe load) -->
+            <div class="grid grid-cols-4 gap-2 border-t border-gray-800/80 pt-4 text-center">
+                <div class="bg-white/5 py-2 rounded-xl"><span class="text-[10px] text-gray-300 font-bold">Tigo Pesa</span></div>
+                <div class="bg-white/5 py-2 rounded-xl"><span class="text-[10px] text-gray-300 font-bold">M-Pesa</span></div>
+                <div class="bg-white/5 py-2 rounded-xl"><span class="text-[10px] text-gray-300 font-bold">HaloPesa</span></div>
+                <div class="bg-white/5 py-2 rounded-xl"><span class="text-[10px] text-gray-300 font-bold">Airtel</span></div>
             </div>
             
         </div>
@@ -187,15 +167,13 @@
         </div>
     </footer>
 
-    <!-- JavaScript ya Kuangalia Kama Ameshakulipia -->
+    <!-- Script ya Kumbukumbu ya Malipo na Ufungukaji wa Haraka -->
     <script>
         function markAsPaid() {
-            // Iweke kumbukumbu kwenye simu ya mteja kuwa ameshalipia
             localStorage.setItem('maya_vip_paid', 'true');
         }
 
         window.onload = function() {
-            // Angalia kama mteja alishalipia siku za nyuma
             if (localStorage.getItem('maya_vip_paid') === 'true') {
                 const contentDiv = document.getElementById('cardContent');
                 contentDiv.innerHTML = `
